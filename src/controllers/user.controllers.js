@@ -29,7 +29,7 @@ const findUser = async (data) => {
 const validateUser = async (data) => {
   let { email, password } = data;
   try {
-    let user = await findUser({ email });
+    let user = await findUser(email);
     if (user) {
       if (await argon2.verify(user.password, password)) {
         return user;
@@ -39,7 +39,7 @@ const validateUser = async (data) => {
     } else {
       return false;
     }
-  } catch (e) {
+  } catch (e) {    
     return false;
   }
 };
